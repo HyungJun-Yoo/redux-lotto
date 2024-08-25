@@ -5,9 +5,11 @@ import LottoAnalyze from './component/LottoAnalyze'
 
 function App() {
   return (
-    <div className='w-full h-screen flex flex-col justify-center'>
-      <LottoMachine />
-      {/* <LottoAnalyze /> */}
+    <div className='w-full h-full flex flex-col justify-center bg-neutral-50 min-h-screen'>
+      <div className='flex flex-col justify-center items-center p-4'>
+        <LottoMachine />
+        <LottoAnalyze />
+      </div>
     </div>
   )
 }

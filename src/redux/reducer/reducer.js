@@ -9,7 +9,6 @@ function reducer(state = initialState, action) {
   } else if (action.type === 'DECREMENT') {
     return { ...state, count: state.count - 1 }
   } else if (action.type === 'LOTTO') {
-    console.log(action.payload)
     return { ...state, lotto: action.payload }
   } else {
     return { ...state }

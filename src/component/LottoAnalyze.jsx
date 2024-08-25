@@ -1,30 +1,60 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+const bgColor = (num) => {
+  if (num < 10) {
+    return 'bg-yellow-500'
+  } else if (num < 20) {
+    return 'bg-blue-500'
+  } else if (num < 30) {
+    return 'bg-red-500'
+  } else if (num < 40) {
+    return 'bg-gray-500'
+  } else {
+    return 'bg-green-500'
+  }
+}
+
 const LottoAnalyze = () => {
   const lotto = useSelector((state) => state.lotto)
   if (lotto.length <= 0) return
 
-  const { numbers: lottoNumbers, bonus } = lotto
-
   return (
-    <div className='p-4'>
-      <h1 className='text-2xl font-bold mb-4'>LottoAnalyze</h1>
-      <div className='mb-6'>
-        <h2 className='text-xl font-semibold'>예측된 로또 번호:</h2>
+    <div className='w-[350px] sm:w-[450px] bg-slate-200 mt-8 sm:p-4 rounded-lg'>
+      <div className='flex flex-col justify-center items-center mb-6'>
+        <div className='flex'>
+          <div className='w-[250px] sm:w-[300px] flex justify-center text-xl font-semibold mb-8'>
+            <p className='ml-2 text-gray-800'>당첨 번호</p>
+          </div>
+          <p className='text-lg font-semibold ml-4 min-w-[60px] text-gray-700'>
+            보너스
+          </p>
+        </div>
         <div className='flex flex-col gap-4'>
-          {lottoNumbers.map((lottoSet, index) => (
-            <div key={index} className='flex items-center gap-2'>
-              {lottoSet.numbers.map((number) => (
+          {lotto.map(({ numbers, bonus }, index) => (
+            <div key={index} className='flex gap-2 sm:gap-2 '>
+              <div className='w-[250px] sm:w-[300px] flex items-center gap-2'>
+                {numbers.map((number) => {
+                  return (
+                    <div
+                      key={number}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full ${bgColor(
+                        number
+                      )} text-white font-bold`}
+                    >
+                      {number}
+                    </div>
+                  )
+                })}
+              </div>
+              <div className='ml-2'>
                 <div
-                  key={number}
-                  className='w-10 h-10 flex items-center justify-center rounded-full bg-green-500 text-white font-bold'
+                  className={`rounded-full ${bgColor(
+                    bonus
+                  )} w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-white font-bold `}
                 >
-                  {number}
+                  {bonus}
                 </div>
-              ))}
-              <div className='ml-4 font-bold text-orange-500'>
-                보너스: {lottoSet.bonus}
               </div>
             </div>
           ))}
