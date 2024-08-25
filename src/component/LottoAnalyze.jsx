@@ -22,13 +22,13 @@ const LottoAnalyze = () => {
   return (
     <div className='w-[350px] sm:w-[450px] bg-slate-200 mt-8 sm:p-4 rounded-lg'>
       <div className='flex flex-col justify-center items-center mb-6'>
-        <div className='flex'>
+        <div className='flex mt-2 sm:mt-0'>
           <div className='w-[250px] sm:w-[300px] flex justify-center text-xl font-semibold mb-8'>
             <p className='ml-2 text-gray-800'>당첨 번호</p>
           </div>
-          <p className='text-lg font-semibold ml-4 min-w-[60px] text-gray-700'>
-            보너스
-          </p>
+          <div className='text-lg font-semibold ml-4 min-w-[60px] text-gray-700'>
+            <p className='ml-1'>보너스</p>
+          </div>
         </div>
         <div className='flex flex-col gap-4'>
           {lotto.map(({ numbers, bonus }, index) => (
